@@ -20,7 +20,7 @@ def new_system():
     earth = particles[2]
     earth.mass = 1.0 | units.MSun
     earth.radius = 1.0 | units.REarth
-    earth.position = (0, 0, -1) | units.AU  
+    earth.position = (0, 0, -.9999) | units.AU  
     earth.velocity = (0, 20, 0) | units.kms
 
     particles.move_to_center()
@@ -33,7 +33,7 @@ def integrate_solar_system(particles, end_time):
     convert_nbody = nbody_system.nbody_to_si(particles.mass.sum(),
                                              particles[1].position.length())
 
-    gravity = Hermite(convert_nbody)
+    gravity = Brutus(convert_nbody)
     gravity.particles.add_particles(particles)
     sun = gravity.particles[0]
     venus = gravity.particles[1]
@@ -90,7 +90,7 @@ def plot_track(planet_1, planet_2, planet_3, start, output_filename):
 
     ax.legend()       
 
-    save_file = 'chaos.png'
+    save_file = output_filename
     plot.savefig(save_file)
     print('\nSaved figure in file', save_file,'\n')
     plot.show()

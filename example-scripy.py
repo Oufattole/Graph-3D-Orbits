@@ -40,7 +40,7 @@ def integrate_solar_system(particles, end_time):
     convert_nbody = nbody_system.nbody_to_si(particles.mass.sum(),
                                              particles[1].position.length())
 
-    gravity = Hermite(convert_nbody) # you can use any integrator here
+    gravity = Brutus(convert_nbody) # you can use any integrator here
     gravity.particles.add_particles(particles)
     planet_1 = gravity.particles[0]
     planet_2 = gravity.particles[1]
